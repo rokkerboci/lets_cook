@@ -2,11 +2,25 @@
     <string name="app_name">Let\'sCook!</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="main_menu_label">Main menu</string>
+    <string name="ingredient_list_label">Ingredients</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="remove_icon">Remove icon</string>
+    <string name="name">Name</string>
+    <string name="type">Type</string>
+    <string name="unit">Unit</string>
+
+    <!--  Ingredient strings  -->
+    <string name="new_ingredient_item">Add new ingredient</string>
+    <string name="ingredient_dairy">Dairy</string>
+    <string name="ingredient_spice">Spice</string>
+    <string name="ingredient_vegetable">Vegetable</string>
+    <string name="ingredient_fruit">Fruit</string>
+    <string name="ingredient_meat">Meat</string>
+    <string name="ingredient_other">Other</string>
+
 </resources>
