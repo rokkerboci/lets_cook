@@ -31,16 +31,16 @@
             tools:text="Apple" />
 
         <TextView
-            android:id="@+id/IngredientItemTypeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Fruit" />
-
-        <TextView
             android:id="@+id/IngredientItemUnitTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Piece" />
+
+        <TextView
+            android:id="@+id/IngredientItemAmountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Fruit" />
     </LinearLayout>
 
     <ImageButton

@@ -8,16 +8,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.triad.school.letscook.R
-import com.triad.school.letscook.dto.Ingredient
+import com.triad.school.letscook.storage.IngredientWithAmount
 import kotlin.properties.Delegates
 
-class IngredientAdapter(
-    private val onRemoveButtonClicked: (Ingredient) -> Unit
-) : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
-    private val ingredients = mutableListOf<Ingredient>()
+class IngredientWithAmountAdapter(
+    private val onRemoveButtonClicked: (IngredientWithAmount) -> Unit
+) : RecyclerView.Adapter<IngredientWithAmountAdapter.ViewHolder>() {
+    private val ingredients = mutableListOf<IngredientWithAmount>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.ingredient_item, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.ingredient_with_amount_item, parent, false)
     )
 
     override fun getItemCount() = ingredients.size
@@ -26,20 +26,24 @@ class IngredientAdapter(
         holder.item = ingredients[position]
     }
 
-    fun addItem(item: Ingredient) {
+    fun addItem(item: IngredientWithAmount) {
+        ingredients.find { it.ingredient == item.ingredient }?.let {
+            removeItem(it)
+        }
+
         ingredients.add(item)
 
         notifyItemInserted(ingredients.size)
     }
 
-    fun removeItem(item: Ingredient) {
+    fun removeItem(item: IngredientWithAmount) {
         val index = ingredients.indexOf(item)
         ingredients.removeAt(index)
 
         notifyItemRemoved(index)
     }
 
-    fun setItems(items: List<Ingredient>) {
+    fun setItems(items: List<IngredientWithAmount>) {
         ingredients.clear()
         ingredients.addAll(items)
 
@@ -49,15 +53,15 @@ class IngredientAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val iconImageView = itemView.findViewById<ImageView>(R.id.IngredientItemIconImageView)
         private val nameTextView = itemView.findViewById<TextView>(R.id.IngredientItemNameTextView)
-        private val categoryTextView = itemView.findViewById<TextView>(R.id.IngredientItemTypeTextView)
         private val unitTextView = itemView.findViewById<TextView>(R.id.IngredientItemUnitTextView)
+        private val amountTextView = itemView.findViewById<TextView>(R.id.IngredientItemAmountTextView)
         private val removeButton = itemView.findViewById<ImageButton>(R.id.IngredientItemRemoveButton)
 
-        var item: Ingredient by Delegates.observable(Ingredient.Default) { _, _, value ->
-            iconImageView.setImageResource(value.ingredientCategory.drawableResourceId)
-            nameTextView.text = value.ingredientName
-            categoryTextView.text = value.ingredientCategory.name
-            unitTextView.text = value.ingredientUnit
+        var item: IngredientWithAmount by Delegates.observable(IngredientWithAmount.Default) { _, _, value ->
+            iconImageView.setImageResource(value.ingredient.ingredientCategory.drawableResourceId)
+            nameTextView.text = value.ingredient.ingredientName
+            unitTextView.text = value.ingredient.ingredientUnit
+            amountTextView.text = value.amount.toString()
         }
 
         init {

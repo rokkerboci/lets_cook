@@ -6,23 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.triad.school.letscook.R
-import com.triad.school.letscook.adapter.IngredientAdapter
-import com.triad.school.letscook.dto.Ingredient
-import com.triad.school.letscook.fragments.dialogs.CreateIngredientDialogFragment
+import com.triad.school.letscook.adapter.RecipeAdapter
+import com.triad.school.letscook.dto.Recipe
+import com.triad.school.letscook.fragments.dialogs.CreateRecipeDialogFragment
 import com.triad.school.letscook.storage.RecipeDatabase
-import kotlinx.android.synthetic.main.ingredient_list.*
+import kotlinx.android.synthetic.main.ingredient_list.fab
+import kotlinx.android.synthetic.main.recipe_list.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class IngredientListFragment : Fragment() {
+class RecipeListFragment : Fragment() {
     private val database: RecipeDatabase by lazy {
         RecipeDatabase.getInstance(requireContext())
     }
 
-    private val ingredientAdapter = IngredientAdapter(this::removeItem)
+    private val recipeAdapter = RecipeAdapter(this::removeItem, this::editItem)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,49 +32,53 @@ class IngredientListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         lifecycleScope.launch(Dispatchers.Main) {
-            val ingredients = withContext(Dispatchers.IO) {
-                database.ingredientDao().getAll()
+            val recipe = withContext(Dispatchers.IO) {
+                database.recipeDao().getAll()
             }
 
-            ingredientAdapter.setItems(ingredients)
+            recipeAdapter.setItems(recipe)
         }
 
-        return inflater.inflate(R.layout.ingredient_list, container, false)
+        return inflater.inflate(R.layout.recipe_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ingredientListRecyclerView.apply {
+        recipeListRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = ingredientAdapter
+            adapter = recipeAdapter
         }
 
         fab.setOnClickListener {
-            CreateIngredientDialogFragment {
+            CreateRecipeDialogFragment {
                 addItem(it)
             }.show(
                 childFragmentManager,
-                "New ingredient"
+                "New recipe"
             )
         }
     }
 
-    private fun removeItem(ingredient: Ingredient) {
-        ingredientAdapter.removeItem(ingredient)
+    private fun removeItem(recipe: Recipe) {
+        recipeAdapter.removeItem(recipe)
 
         lifecycleScope.launch(Dispatchers.IO) {
-            database.ingredientDao().delete(ingredient)
+            database.recipeDao().delete(recipe)
         }
     }
 
-    private fun addItem(ingredient: Ingredient) {
+    private fun addItem(recipe: Recipe) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val id = database.ingredientDao().insert(ingredient)
+            val id = database.recipeDao().insert(recipe)
 
             withContext(Dispatchers.Main) {
-                ingredientAdapter.addItem(ingredient.copy(ingredientId = id))
+                recipeAdapter.addItem(recipe.copy(recipeId = id))
             }
         }
+    }
+
+    private fun editItem(recipe: Recipe) {
+        findNavController().navigate(RecipeListFragmentDirections.actionRecipeListToEditRecipe(recipe.recipeId))
     }
 }

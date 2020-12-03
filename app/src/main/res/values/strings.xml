@@ -22,5 +22,11 @@
     <string name="ingredient_fruit">Fruit</string>
     <string name="ingredient_meat">Meat</string>
     <string name="ingredient_other">Other</string>
+    <string name="recipe_list_label">Recipes</string>
+    <string name="new_recipe_item">Create new recipe</string>
+    <string name="edit_recipe_label">Edit recipe</string>
+    <string name="description">Description</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="amount">Amount</string>
 
 </resources>

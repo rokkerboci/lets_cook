@@ -1,4 +1,4 @@
-package com.triad.school.letscook.storage
+package com.triad.school.letscook.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
