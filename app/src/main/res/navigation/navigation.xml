@@ -9,7 +9,7 @@
         android:id="@+id/MainMenu"
         android:name="com.triad.school.letscook.fragments.MainMenuFragment"
         android:label="@string/main_menu_label"
-        tools:layout="@layout/main_menu">
+        tools:layout="@layout/create_menu">
 
         <action android:id="@+id/action_MainMenu_to_IngredientList" app:destination="@id/IngredientList" />
         <action android:id="@+id/action_MainMenu_to_RecipeList" app:destination="@id/RecipeList" />

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/MainMenu"
+        android:icon="@drawable/ic_pencil_grey600_48dp"
+        android:title="@string/main_menu_label" />
+    <item
+        android:id="@+id/IngredientList"
+        android:icon="@drawable/ic_pencil_grey600_48dp"
+        android:title="@string/ingredient_list_label" />
+    <item
+        android:id="@+id/RecipeList"
+        android:icon="@drawable/ic_pencil_grey600_48dp"
+        android:title="@string/recipe_list_label" />
+</menu>

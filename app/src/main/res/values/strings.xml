@@ -9,7 +9,7 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
 
-    <string name="remove_icon">Remove icon</string>
+    <string name="remove_recipe_button">Remove icon</string>
     <string name="name">Name</string>
     <string name="type">Type</string>
     <string name="unit">Unit</string>
@@ -28,5 +28,8 @@
     <string name="description">Description</string>
     <string name="ingredient">Ingredient</string>
     <string name="amount">Amount</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="add">add</string>
+    <string name="add_new_recipe_button">Add new recipe button</string>
 
 </resources>
