@@ -18,3 +18,15 @@ data class Recipe(
         )
     }
 }
+
+data class RecipeWithAmount(
+    val recipe: Recipe,
+    val amount: Long
+) {
+    companion object {
+        val Default = RecipeWithAmount(
+            recipe = Recipe.Default,
+            amount = 0
+        )
+    }
+}

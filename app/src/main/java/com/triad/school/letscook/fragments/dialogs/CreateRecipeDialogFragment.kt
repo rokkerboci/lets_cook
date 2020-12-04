@@ -24,7 +24,7 @@ class CreateRecipeDialogFragment(
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
-            .setTitle(R.string.new_recipe_item)
+            .setTitle(R.string.create_new_recipe)
             .setView(contentView)
             .setPositiveButton(R.string.ok) { _, _ ->
                 if (isValid) {

@@ -42,7 +42,7 @@ class CreateIngredientDialogFragment(
         }
 
         return AlertDialog.Builder(requireContext())
-            .setTitle(R.string.new_ingredient_item)
+            .setTitle(R.string.add_existing_ingredient)
             .setView(contentView)
             .setPositiveButton(R.string.ok) { _, _ ->
                 if (isValid) {

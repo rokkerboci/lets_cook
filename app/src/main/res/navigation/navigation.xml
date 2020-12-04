@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MainMenu"
-        android:name="com.triad.school.letscook.fragments.MainMenuFragment"
+        android:name="com.triad.school.letscook.fragments.CreateMenuFragment"
         android:label="@string/main_menu_label"
         tools:layout="@layout/create_menu">
 
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/IngredientList"
         android:name="com.triad.school.letscook.fragments.IngredientListFragment"
-        android:label="@string/ingredient_list_label"
+        android:label="@string/ingredients"
         tools:layout="@layout/ingredient_list">
 
         <action android:id="@+id/action_IngredientList_to_MainMenu" app:destination="@id/MainMenu" />
@@ -30,11 +30,14 @@
 
         <action android:id="@+id/action_RecipeList_to_MainMenu" app:destination="@id/MainMenu" />
         <action android:id="@+id/action_RecipeList_to_EditRecipe" app:destination="@id/EditRecipe" />
+        <action
+            android:id="@+id/action_RecipeList_self"
+            app:destination="@id/RecipeList" />
     </fragment>
     <fragment
         android:id="@+id/EditRecipe"
         android:name="com.triad.school.letscook.fragments.EditRecipeFragment"
-        android:label="@string/edit_recipe_label"
+        android:label="@string/edit_recipe"
         tools:layout="@layout/edit_recipe">
 
         <argument android:name="recipe_id" app:argType="long" />

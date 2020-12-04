@@ -37,6 +37,12 @@ class EditRecipeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        return inflater.inflate(R.layout.edit_recipe, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         lifecycleScope.launch(Dispatchers.Main) {
             ingredients = withContext(Dispatchers.IO) {
                 database.ingredientDao().getAll()
@@ -48,12 +54,6 @@ class EditRecipeFragment : Fragment() {
 
             ingredientWithAmountAdapter.setItems(items)
         }
-
-        return inflater.inflate(R.layout.edit_recipe, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         ingredientWithAmountListRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())

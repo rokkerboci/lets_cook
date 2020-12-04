@@ -7,7 +7,7 @@
     <item
         android:id="@+id/IngredientList"
         android:icon="@drawable/ic_pencil_grey600_48dp"
-        android:title="@string/ingredient_list_label" />
+        android:title="@string/ingredients" />
     <item
         android:id="@+id/RecipeList"
         android:icon="@drawable/ic_pencil_grey600_48dp"

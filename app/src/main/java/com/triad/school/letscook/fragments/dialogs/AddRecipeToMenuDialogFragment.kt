@@ -10,42 +10,42 @@ import android.widget.EditText
 import android.widget.Spinner
 import androidx.fragment.app.DialogFragment
 import com.triad.school.letscook.R
-import com.triad.school.letscook.dto.Ingredient
+import com.triad.school.letscook.dto.Recipe
+import com.triad.school.letscook.dto.RecipeWithAmount
 import com.triad.school.letscook.fragments.CreateItemListener
-import com.triad.school.letscook.storage.IngredientWithAmount
 
-class AddIngredientToRecipeDialogFragment(
-    private val ingredients: List<Ingredient>,
-    private val listener: CreateItemListener<IngredientWithAmount>
+class AddRecipeToMenuDialogFragment(
+        private val recipes: List<Recipe>,
+        private val listener: CreateItemListener<RecipeWithAmount>
 ) : DialogFragment() {
 
     private val contentView: View by lazy {
-        LayoutInflater.from(context).inflate(R.layout.add_ingredient_to_recipe_dialog, null)
+        LayoutInflater.from(context).inflate(R.layout.add_recipe_to_menu_dialog, null)
     }
     private val amountEditText: EditText by lazy {
-        contentView.findViewById(R.id.IngredientItemAmountEditText)
+        contentView.findViewById(R.id.RecipeItemAmountEditText)
     }
-    private val ingredientSpinner: Spinner by lazy {
-        contentView.findViewById(R.id.IngredientItemSpinner)
+    private val recipeSpinner: Spinner by lazy {
+        contentView.findViewById(R.id.RecipeItemSpinner)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        ingredientSpinner.apply {
+        recipeSpinner.apply {
             adapter = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
-                ingredients.map {
-                    it.ingredientName
+                recipes.map {
+                    it.recipeName
                 }
             )
         }
 
         return AlertDialog.Builder(requireContext())
-            .setTitle(R.string.add_existing_ingredient)
+            .setTitle(R.string.add_existing_recipe)
             .setView(contentView)
             .setPositiveButton(R.string.ok) { _, _ ->
                 if (isValid) {
-                    listener.onItemCreated(ingredientWithAmount)
+                    listener.onItemCreated(recipeWithAmount)
                 }
             }
             .setNegativeButton(R.string.cancel, null)
@@ -55,9 +55,9 @@ class AddIngredientToRecipeDialogFragment(
     private val isValid
         get() = amountEditText.text.isNotBlank() && amountEditText.text.toString().toDoubleOrNull() != null
 
-    private val ingredientWithAmount: IngredientWithAmount
-        get() = IngredientWithAmount(
-            ingredient = ingredients[ingredientSpinner.selectedItemPosition],
-            amount = amountEditText.text.toString().toDouble()
+    private val recipeWithAmount: RecipeWithAmount
+        get() = RecipeWithAmount(
+            recipe = recipes[recipeSpinner.selectedItemPosition],
+            amount = amountEditText.text.toString().toLong()
         )
 }

@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Let\'sCook!</string>
-    <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="main_menu_label">Main menu</string>
-    <string name="ingredient_list_label">Ingredients</string>
+    <string name="main_menu_label">Create menu</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="ok">OK</string>
@@ -15,7 +13,7 @@
     <string name="unit">Unit</string>
 
     <!--  Ingredient strings  -->
-    <string name="new_ingredient_item">Add new ingredient</string>
+    <string name="add_existing_ingredient">Add existing ingredient</string>
     <string name="ingredient_dairy">Dairy</string>
     <string name="ingredient_spice">Spice</string>
     <string name="ingredient_vegetable">Vegetable</string>
@@ -23,13 +21,17 @@
     <string name="ingredient_meat">Meat</string>
     <string name="ingredient_other">Other</string>
     <string name="recipe_list_label">Recipes</string>
-    <string name="new_recipe_item">Create new recipe</string>
-    <string name="edit_recipe_label">Edit recipe</string>
+    <string name="create_new_recipe">Create new recipe</string>
+    <string name="edit_recipe">Edit recipe</string>
     <string name="description">Description</string>
     <string name="ingredient">Ingredient</string>
     <string name="amount">Amount</string>
     <string name="ingredients">Ingredients</string>
-    <string name="add">add</string>
-    <string name="add_new_recipe_button">Add new recipe button</string>
+    <string name="add">Add</string>
+    <string name="add_recipe_button">Add existing recipe</string>
+    <string name="to_start">To start add a recipe</string>
+    <string name="recipe">Recipe</string>
+    <string name="add_existing_recipe">Add recipe to menu</string>
+    <string name="save">Save</string>
 
 </resources>
