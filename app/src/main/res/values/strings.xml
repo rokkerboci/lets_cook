@@ -33,5 +33,6 @@
     <string name="recipe">Recipe</string>
     <string name="add_existing_recipe">Add recipe to menu</string>
     <string name="save">Save</string>
+    <string name="lol">Cook it!</string>
 
 </resources>

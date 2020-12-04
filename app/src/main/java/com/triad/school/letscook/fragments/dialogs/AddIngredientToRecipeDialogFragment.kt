@@ -11,8 +11,8 @@ import android.widget.Spinner
 import androidx.fragment.app.DialogFragment
 import com.triad.school.letscook.R
 import com.triad.school.letscook.dto.Ingredient
+import com.triad.school.letscook.dto.IngredientWithAmount
 import com.triad.school.letscook.fragments.CreateItemListener
-import com.triad.school.letscook.storage.IngredientWithAmount
 
 class AddIngredientToRecipeDialogFragment(
     private val ingredients: List<Ingredient>,

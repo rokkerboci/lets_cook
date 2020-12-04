@@ -1,8 +1,8 @@
 package com.triad.school.letscook.dao
 
 import androidx.room.*
+import com.triad.school.letscook.dto.IngredientWithAmount
 import com.triad.school.letscook.dto.RecipeIngredientCrossRef
-import com.triad.school.letscook.storage.IngredientWithAmount
 
 @Dao
 interface RecipeIngredientCrossRefDao {

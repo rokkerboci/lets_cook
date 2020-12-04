@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.triad.school.letscook.R
 import com.triad.school.letscook.adapter.IngredientWithAmountAdapter
 import com.triad.school.letscook.dto.Ingredient
+import com.triad.school.letscook.dto.IngredientWithAmount
 import com.triad.school.letscook.dto.Recipe
 import com.triad.school.letscook.dto.RecipeIngredientCrossRef
 import com.triad.school.letscook.fragments.dialogs.AddIngredientToRecipeDialogFragment
-import com.triad.school.letscook.storage.IngredientWithAmount
 import com.triad.school.letscook.storage.RecipeDatabase
 import kotlinx.android.synthetic.main.edit_recipe.*
 import kotlinx.coroutines.Dispatchers

@@ -6,21 +6,26 @@
     app:startDestination="@id/MainMenu">
 
     <fragment
+        android:id="@+id/ShowMenuIngredientsFragment"
+        android:name="com.triad.school.letscook.fragments.ShowMenuIngredientsFragment"
+        android:label="@string/main_menu_label"
+        tools:layout="@layout/create_menu">
+
+        <argument android:name="recipe_descriptors" app:argType="com.triad.school.letscook.dto.RecipeWithAmountDescriptor[]" />
+    </fragment>
+    <fragment
         android:id="@+id/MainMenu"
         android:name="com.triad.school.letscook.fragments.CreateMenuFragment"
         android:label="@string/main_menu_label"
         tools:layout="@layout/create_menu">
 
-        <action android:id="@+id/action_MainMenu_to_IngredientList" app:destination="@id/IngredientList" />
-        <action android:id="@+id/action_MainMenu_to_RecipeList" app:destination="@id/RecipeList" />
+        <action android:id="@+id/action_RecipeList_to_EditRecipe" app:destination="@id/ShowMenuIngredientsFragment" />
     </fragment>
     <fragment
         android:id="@+id/IngredientList"
         android:name="com.triad.school.letscook.fragments.IngredientListFragment"
         android:label="@string/ingredients"
         tools:layout="@layout/ingredient_list">
-
-        <action android:id="@+id/action_IngredientList_to_MainMenu" app:destination="@id/MainMenu" />
     </fragment>
     <fragment
         android:id="@+id/RecipeList"
@@ -28,11 +33,7 @@
         android:label="@string/recipe_list_label"
         tools:layout="@layout/recipe_list">
 
-        <action android:id="@+id/action_RecipeList_to_MainMenu" app:destination="@id/MainMenu" />
         <action android:id="@+id/action_RecipeList_to_EditRecipe" app:destination="@id/EditRecipe" />
-        <action
-            android:id="@+id/action_RecipeList_self"
-            app:destination="@id/RecipeList" />
     </fragment>
     <fragment
         android:id="@+id/EditRecipe"
@@ -41,7 +42,5 @@
         tools:layout="@layout/edit_recipe">
 
         <argument android:name="recipe_id" app:argType="long" />
-
-        <action android:id="@+id/action_EditRecipe_to_RecipeList" app:destination="@id/RecipeList" />
     </fragment>
 </navigation>

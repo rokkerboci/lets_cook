@@ -8,11 +8,13 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.triad.school.letscook.R
 import com.triad.school.letscook.adapter.CreateMenuAdapter
 import com.triad.school.letscook.dto.Recipe
 import com.triad.school.letscook.dto.RecipeWithAmount
+import com.triad.school.letscook.dto.RecipeWithAmountDescriptor
 import com.triad.school.letscook.fragments.dialogs.AddRecipeToMenuDialogFragment
 import com.triad.school.letscook.storage.RecipeDatabase
 import kotlinx.android.synthetic.main.create_menu.*
@@ -24,6 +26,8 @@ class CreateMenuFragment : Fragment() {
     private val database: RecipeDatabase by lazy {
         RecipeDatabase.getInstance(requireContext())
     }
+
+    private val addedRecipes = mutableListOf<RecipeWithAmount>()
 
     private lateinit var recipes: List<Recipe>
 
@@ -62,15 +66,29 @@ class CreateMenuFragment : Fragment() {
                 )
             }
         }
+
+        button.setOnClickListener {
+            findNavController().navigate(
+                CreateMenuFragmentDirections.actionRecipeListToEditRecipe(addedRecipes.map {
+                    RecipeWithAmountDescriptor(it.recipe.recipeId, it.amount)
+                }.toTypedArray())
+            )
+        }
     }
 
     fun addItem(recipeWithAmount: RecipeWithAmount) {
+        addedRecipes.find { it.recipe.recipeId == recipeWithAmount.recipe.recipeId }?.let {
+            removeItem(it)
+        }
+
+        addedRecipes.add(recipeWithAmount)
         createMenuAdapter.addItem(recipeWithAmount)
 
         start_text.isVisible = false
     }
 
     fun removeItem(recipeWithAmount: RecipeWithAmount) {
+        addedRecipes.remove(recipeWithAmount)
         createMenuAdapter.removeItem(recipeWithAmount)
 
         if (createMenuAdapter.itemCount == 0) {

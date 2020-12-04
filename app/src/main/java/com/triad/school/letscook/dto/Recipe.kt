@@ -1,7 +1,9 @@
 package com.triad.school.letscook.dto
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity
 data class Recipe(
@@ -30,3 +32,9 @@ data class RecipeWithAmount(
         )
     }
 }
+
+@Parcelize
+data class RecipeWithAmountDescriptor (
+    val recipeId: Long,
+    val amount: Long
+) : Parcelable

@@ -1,7 +1,6 @@
-package com.triad.school.letscook.storage
+package com.triad.school.letscook.dto
 
 import androidx.room.Embedded
-import com.triad.school.letscook.dto.Ingredient
 
 data class IngredientWithAmount(
     @Embedded val ingredient: Ingredient,
